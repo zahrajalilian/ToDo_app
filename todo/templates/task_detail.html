@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-entry">
+{#<h2>{{ posts.title }}</h2>#}
+{#<p>{{ posts.body }}</p>#}
+<h2>{{ tasks_obj.title }}</h2>
+<p>{{ tasks_obj.description }}</p>
+<p>{{ tasks_obj.priority }}</p>
+<p>{{ tasks_obj.due_date_time  }}</p>
+<p>{{ tasks_obj.category}}</p>
+<p>
+                    <b>Due:</b> {{ tasks_obj.due_date_time|timeuntil }}
+                </p>
+
+</div>
+    <a href="{% url 'task_edit' tasks_obj.pk %}" class="btn btn-warning"> + Edit  Post</a>
+    <p><a href="{% url 'task_delete' tasks_obj.pk %}" class="btn btn-danger" > + Delete  Post</a></p>
+{% endblock content %}

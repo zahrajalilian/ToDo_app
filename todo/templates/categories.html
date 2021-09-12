@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+  <h3 class="w3-bar-item">Filter By category </h3>
+  <a href=" {% url 'cat_ed' %}" class=" w3-bar-item w3-button"> Education</a>
+    <a href=" {% url 'cat_spo' %}"  class="w3-bar-item w3-button"> Sports</a>
+  <a href=" {% url 'cat_tob' %}" class="w3-bar-item w3-button"> To buy</a>
+  <a href=" {% url 'cat_djp' %}" class="w3-bar-item w3-button"> Django projects</a>
+  <a href=" {% url 'cat_hc' %}" class="w3-bar-item w3-button"> House chores</a>
+  <a href=" {% url 'cat_UD' %}" class="w3-bar-item w3-button"> undecided categories</a>
+
+
+</div>
+
+
+
+{% for  tasks in category_list %}
+
+<div class="row">
+    <div class="col-md-6" style="margin:0 auto;">
+        <div class="card container-fluid" style="margin-top: 1rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{tasks.title}} </h5>
+                <p> {{tasks.priority}} </p>
+              <p class="card-text">{{tasks.description}}</p>
+                <p class="card-text">{{tasks.category}}</p>
+              <p class="card-text">{{tasks.due_date_time}}</p>
+                <p>
+                    <b>Due:</b> {{ tasks.due_date_time|timeuntil }}
+                </p>
+
+                 <a href="{% url 'task_edit' tasks.pk %}" class="btn btn-warning">+ Edit task </a>
+                <a href="{% url 'task_delete' tasks.pk %}" class="btn btn-danger" >+ Delete task </a>
+
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endfor %}
+
+
+
+
+{% endblock content %}
+
